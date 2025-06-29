@@ -35,6 +35,14 @@ router.post("/seats", (req, res) => {
     });
   }
 
+  const isTaken = db.seats.some((s) => s.day === day && s.seat === seat);
+  if (isTaken) {
+    return res.status(409).json({
+      message: "The slot is already taken...",
+      code: 409,
+    });
+  }
+
   const newId = db.seats.length ? db.seats[db.seats.length - 1].id + 1 : 1;
   const newSeat = { id: newId, day, seat, client, email };
   db.seats.push(newSeat);

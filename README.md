@@ -1,46 +1,55 @@
-# 🎫 Testimonials App – Seat Booking System
+# Testimonials App
 
-A fullstack app for booking concert seats.  
-Frontend: React + Redux  
-Backend: Express + CORS  
-Deployment: Replit
+A full-stack application for managing customer testimonials, concerts, and seat reservations.
 
-## 🔗 Live app
+##  Stack
 
-[View on Replit](https://replit.com/@twoj-login/testimonials-api)
+🎯 Frontend:
+JavaScript (ES6+)
+React
+Redux
+React Router
+Redux Thunk
+Axios
+Bootstrap / Reactstrap
+SASS (SCSS)
 
-## 🚀 How to run locally
+⚙️ Backend:
+JavaScript (Node.js)
+Express
+CORS
+Nodemon
+Custom REST API
+
+🚀 Deployment & tools:
+PM2
+Yarn
+Hetzner VPS
+Git / GitHub
+
+##  Getting Started
 
 ```bash
 # Backend
 yarn install
-yarn dev
+yarn start
 
 # Frontend
 cd client
 yarn install
-yarn start
-🏗 Build for production
-bash
-Kopiuj
-Edytuj
-cd client
 yarn build
-Then the backend will serve the React app under /.
 
-🌐 API URL config
-In client/src/config.js:
+Server runs at http://localhost:8000
 
-js
-Kopiuj
-Edytuj
-export const API_URL =
-  process.env.NODE_ENV === 'production' ? '/api' : 'http://localhost:8000/api';
-✅ Features
-Live seat updates every 2 minutes
+ API Endpoints (examples)
+GET /api/testimonials
 
-Server-side validation to prevent double bookings
+POST /api/seats
 
-Deployed as single Express app on Replit
+GET /api/concerts/:id
 
-Created by Łukasz Zwolak
+ Deployment
+Hosted on a VPS (e.g., Hetzner) using PM2.
+
+ Author
+Project built as part of the Kodilla bootcamp.

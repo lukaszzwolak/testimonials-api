@@ -1,6 +1,8 @@
 const express = require("express");
 const cors = require("cors");
 const path = require("path");
+const socketIo = require("socket.io");
+
 const app = express();
 
 // middleware
@@ -41,7 +43,26 @@ app.use((req, res) => {
 });
 
 // dynamic port
-const PORT = process.env.PORT || 8000;
-app.listen(PORT, () => {
+const PORT = process.env.PORT || 3000;
+
+// utworzenie serwera HTTP
+const http = require("http");
+const server = http.createServer(app);
+
+// integracja Socket.IO z serwerem
+const io = socketIo(server, {
+  cors: {
+    origin: "*",
+    methods: ["GET", "POST"],
+  },
+});
+
+// nasłuchiwacz połączenia Socket.IO
+io.on("connection", (socket) => {
+  console.log("New socket!");
+});
+
+// uruchomienie serwera
+server.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
 });

@@ -6,6 +6,10 @@ const socketIo = require("socket.io");
 const app = express();
 
 // middleware
+app.use((req, res, next) => {
+  req.io = io;
+  next();
+});
 app.use(cors());
 app.use(express.json());
 

@@ -14,12 +14,14 @@ const SeatChooser = () => {
     );
     setSocket(newSocket);
 
-    // Nasłuchiwanie na zmiany miejsc
     newSocket.on("seatsUpdated", (seats) => {
       dispatch(loadSeats(seats));
     });
 
-    return () => newSocket.disconnect();
+    return () => {
+      newSocket.off("seatsUpdated");
+      newSocket.disconnect();
+    };
   }, [dispatch]);
 
   return (

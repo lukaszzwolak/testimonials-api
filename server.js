@@ -47,7 +47,7 @@ app.use((req, res) => {
 });
 
 // dynamic port
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 8000;
 
 // utworzenie serwera HTTP
 const http = require("http");

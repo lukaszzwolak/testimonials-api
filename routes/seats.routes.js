@@ -47,6 +47,9 @@ router.post("/seats", (req, res) => {
   const newSeat = { id: newId, day, seat, client, email };
   db.seats.push(newSeat);
 
+  req.io.emit("seatsUpdated", db.seats);
+  console.log("🟢 seatsUpdated emitted with:", db.seats);
+
   res.status(201).json({ message: "OK", data: newSeat });
 });
 

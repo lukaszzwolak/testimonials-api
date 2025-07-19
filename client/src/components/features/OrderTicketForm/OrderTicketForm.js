@@ -65,7 +65,7 @@ const OrderTicketForm = () => {
       setIsError(true);
     }
   };
-
+  //await dispatch(addSeatRequest(order));
   return (
     <Form className="order-ticket-form" onSubmit={submitForm}>
       <Row>

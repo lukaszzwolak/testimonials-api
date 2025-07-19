@@ -1,31 +1,35 @@
-import { useEffect } from "react";
+import React, { useEffect, useState } from "react";
+import io from "socket.io-client";
 import { useDispatch, useSelector } from "react-redux";
-import { Button, Progress, Alert } from "reactstrap";
-import {
-  getSeats,
-  loadSeatsRequest,
-  getRequests,
-} from "../../../redux/seatsRedux";
+import { getSeats, loadSeats } from "../../../redux/seatsRedux";
+import { Button, Alert, Progress } from "reactstrap";
 import "./SeatChooser.scss";
 
 const SeatChooser = ({ chosenDay, chosenSeat, updateSeat }) => {
   const dispatch = useDispatch();
   const seats = useSelector(getSeats);
-  const requests = useSelector(getRequests);
+  const [socket, setSocket] = useState(null);
 
+  // Socket.io połączenie
   useEffect(() => {
-    dispatch(loadSeatsRequest());
+    const newSocket = io(
+      process.env.NODE_ENV === "production" ? "" : "ws://localhost:8000",
+      { transports: ["websocket"] }
+    );
+    setSocket(newSocket);
 
-    const interval = setInterval(() => {
-      dispatch(loadSeatsRequest());
-    }, 2 * 60 * 1000);
+    newSocket.on("seatsUpdated", (seats) => {
+      dispatch(loadSeats(seats));
+    });
 
-    return () => clearInterval(interval);
+    return () => {
+      newSocket.disconnect();
+    };
   }, [dispatch]);
 
-  const isTaken = (seatId) => {
-    return seats.some((item) => item.seat === seatId && item.day === chosenDay);
-  };
+  // Sprawdzenie czy miejsce zajęte w danym dniu
+  const isTaken = (seatId) =>
+    seats.some((item) => item.seat === seatId && item.day === chosenDay);
 
   const prepareSeat = (seatId) => {
     if (seatId === chosenSeat)
@@ -54,6 +58,11 @@ const SeatChooser = ({ chosenDay, chosenSeat, updateSeat }) => {
       );
   };
 
+  // Liczenie miejsc tylko dla wybranego dnia
+  const takenSeats = seats.filter((s) => s.day === chosenDay).length;
+  const totalSeats = 50;
+  const freeSeats = totalSeats - takenSeats;
+
   return (
     <div>
       <h3>Pick a seat</h3>
@@ -65,17 +74,14 @@ const SeatChooser = ({ chosenDay, chosenSeat, updateSeat }) => {
           <Button outline color="primary" /> – it's empty
         </small>
       </div>
-      {requests["LOAD_SEATS"] && requests["LOAD_SEATS"].success && (
-        <div className="seats">
-          {[...Array(50)].map((x, i) => prepareSeat(i + 1))}
-        </div>
-      )}
-      {requests["LOAD_SEATS"] && requests["LOAD_SEATS"].pending && (
-        <Progress animated color="primary" value={50} />
-      )}
-      {requests["LOAD_SEATS"] && requests["LOAD_SEATS"].error && (
-        <Alert color="warning">Couldn't load seats...</Alert>
-      )}
+
+      <p className="mb-3">
+        Free seats: {freeSeats}/{totalSeats}
+      </p>
+
+      <div className="seats">
+        {[...Array(50)].map((_, i) => prepareSeat(i + 1))}
+      </div>
     </div>
   );
 };

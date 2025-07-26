@@ -48,8 +48,6 @@ POST /api/seats
 
 GET /api/concerts/:id
 
- Deployment
-Hosted on a VPS (e.g., Hetzner) using PM2.
 
  Author
 Project built as part of the Kodilla bootcamp.

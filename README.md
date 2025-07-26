@@ -24,7 +24,6 @@ Custom REST API
 🚀 Deployment & tools:
 PM2
 Yarn
-Hetzner VPS
 Git / GitHub
 
 ##  Getting Started

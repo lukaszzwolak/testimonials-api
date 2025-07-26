@@ -5,10 +5,13 @@ const socketIo = require("socket.io");
 const mongoose = require("mongoose");
 
 mongoose
-  .connect("mongodb://localhost:27017/NewWaveDB", {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-  })
+  .connect(
+    "mongodb+srv://lukaszzwolak1607:MEDIVALTOTALwar2@lukaslukas.3t6dg87.mongodb.net/NewWaveDB?retryWrites=true&w=majority&appName=Lukaslukas",
+    {
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+    }
+  )
   .then(() => console.log("Connected to MongoDB ✅"))
   .catch((err) => console.error("Error connecting to MongoDB ❌:", err));
 const app = express();

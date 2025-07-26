@@ -2,7 +2,15 @@ const express = require("express");
 const cors = require("cors");
 const path = require("path");
 const socketIo = require("socket.io");
+const mongoose = require("mongoose");
 
+mongoose
+  .connect("mongodb://localhost:27017/NewWaveDB", {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+  })
+  .then(() => console.log("Connected to MongoDB ✅"))
+  .catch((err) => console.error("Error connecting to MongoDB ❌:", err));
 const app = express();
 
 // middleware

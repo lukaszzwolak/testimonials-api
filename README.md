@@ -1,12 +1,12 @@
-# 🎤 Testimonials App
+# Testimonials App
 
 A full-stack web application for managing customer testimonials, concerts, and seat reservations – with real-time updates using WebSockets and MongoDB integration.
 
 ---
 
-## 🧱 Tech Stack
+## Tech Stack
 
-### 🎯 Frontend:
+### Frontend:
 
 - JavaScript (ES6+)
 - React
@@ -16,7 +16,7 @@ A full-stack web application for managing customer testimonials, concerts, and s
 - Bootstrap / Reactstrap
 - SASS (SCSS)
 
-### ⚙️ Backend:
+### Backend:
 
 - Node.js
 - Express
@@ -25,7 +25,7 @@ A full-stack web application for managing customer testimonials, concerts, and s
 - CORS
 - Nodemon
 
-### 🚀 Deployment & Dev Tools:
+### Deployment & Dev Tools:
 
 - Yarn
 - PM2
@@ -34,9 +34,9 @@ A full-stack web application for managing customer testimonials, concerts, and s
 
 ---
 
-## 🚀 Getting Started
+## Getting Started
 
-### 🔧 Backend Setup
+### Backend Setup
 
 ```bash
 # Install dependencies
@@ -46,7 +46,7 @@ yarn install
 yarn start
 Server runs at: http://localhost:8000
 
-💻 Frontend Setup
+Frontend Setup
 bash
 Kopiuj
 Edytuj
@@ -59,8 +59,8 @@ yarn install
 yarn build
 The frontend is automatically served from client/build.
 
-🌐 API Endpoints (Examples)
-🎤 Testimonials
+API Endpoints (Examples)
+Testimonials
 GET /api/testimonials – get all testimonials
 
 GET /api/testimonials/:id – get testimonial by ID
@@ -82,20 +82,20 @@ PUT /api/concerts/:id – update concert
 
 DELETE /api/concerts/:id – remove concert
 
-🎟️ Seats
+Seats
 GET /api/seats – get all seats
 
 POST /api/seats – reserve a seat (with WebSocket update)
 
-🔄 WebSockets
+WebSockets
 Real-time seat updates are broadcast via Socket.IO under the event: seatsUpdated.
 
-☁️ MongoDB Integration
+MongoDB Integration
 The backend connects to a MongoDB database (local or Atlas) using Mongoose.
 
 Switch from local to remote by updating your mongoose.connect() URI in server.js.
 
-👤 Author
+Author
 Built by Łukasz Zwolak
 Project completed as part of the Kodilla Full Stack Developer Bootcamp.
 ```

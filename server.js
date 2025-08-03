@@ -40,6 +40,11 @@ app.use("/api", testimonialsRoutes);
 app.use("/api", concertsRoutes);
 app.use("/api", seatsRoutes);
 
+app.use(
+  "/img/uploads",
+  express.static(path.join(__dirname, "/client/public/img/uploads"))
+);
+
 // serve static files from React build
 app.use(express.static(path.join(__dirname, "client/build")));
 

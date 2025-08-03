@@ -47,9 +47,6 @@ yarn start
 Server runs at: http://localhost:8000
 
 Frontend Setup
-bash
-Kopiuj
-Edytuj
 cd client
 
 # Install frontend dependencies
